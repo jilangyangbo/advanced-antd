@@ -1,6 +1,6 @@
 {
-  "version": "0.0.1",
-  "name": "antdx",
+  "version": "0.0.2",
+  "name": "advanced-antd",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -43,19 +43,19 @@
     "trailingComma": "es5"
   },
   "author": "jilangyangbo",
-  "module": "dist/antdx.esm.js",
+  "module": "dist/advanced-antd.esm.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/jilangyangbo/antdx"
+    "url": "https://github.com/jilangyangbo/advanced-antd"
   },
-  "homepage": "https://jilangyangbo.github.io/antdx",
+  "homepage": "https://jilangyangbo.github.io/advanced-antd",
   "size-limit": [
     {
-      "path": "dist/antdx.cjs.production.min.js",
+      "path": "dist/advanced-antd.cjs.production.min.js",
       "limit": "10 KB"
     },
     {
-      "path": "dist/antdx.esm.js",
+      "path": "dist/advanced-antd.esm.js",
       "limit": "10 KB"
     }
   ],

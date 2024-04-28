@@ -1,4 +1,6 @@
-# antdx
+# advanced-antd
+
+ English · [中文](./README.zh_CN.md)
 
 ## Summary <br>
 
@@ -7,20 +9,20 @@ Automatically adjust the scroll-y attribute of the table based on page layout.
 
 ## Example
 
- https://jilangyangbo.github.io/antdx/
+ https://jilangyangbo.github.io/advanced-antd/
 
 ## Install
 
 ```
-npm install antdx  or  pnpm install antdx or yarn add antdx
+npm install advanced-antd  or  pnpm install advanced-antd or yarn add advanced-antd
 ```
 
 ## Usage
 
-Just need to replace the native antd Table component with antdx.
+Just need to replace the native antd Table component with ScrollTable from advanced-antd.
 
 ```
-import {ScrollTable} from 'antdx'
+import {ScrollTable} from 'advanced-antd'
 ...
 
 <ScrollTable>
@@ -32,6 +34,7 @@ import {ScrollTable} from 'antdx'
 ```
 
 ## Props
+
  ScrollTable: 
  Includes all the props of antd Table component.
  ### additional props
