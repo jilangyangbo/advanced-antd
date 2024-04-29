@@ -42,14 +42,14 @@ const App = () => {
     { name: 'Lilei', age: 32, address: 'London No. 5 Lake Park' },
     { name: 'Lili', age: 32, address: 'London No. 6 Lake Park' },
     { name: 'janny', age: 32, address: 'London No. 7 Lake Park' },
-    { name: 'jannny', age: 32, address: 'London No. 8 Lake Park' },
+    { name: 'Brian', age: 32, address: 'London No. 8 Lake Park' },
     { name: 'tomas', age: 32, address: 'London No. 9 Lake  Park' },
   ];
   const options = [
     { label: 'antd Table', value: 'Table' },
-    { label: 'scroll-antd-table', value: 'ScrollTable' },
+    { label: 'ScrollTable', value: 'ScrollTable' },
   ];
-  const onChange = (e) => {
+  const onChange = e => {
     setValue(e.target.value);
   };
   return (
@@ -80,7 +80,7 @@ const App = () => {
             ${
               value == 'Table'
                 ? "import { Table } from 'antd';"
-                : "import ScrollTable from'scroll-antd-table';"
+                : "import {ScrollTable} from'advanced-antd';"
             } 
 
 
