@@ -53,19 +53,6 @@ function getTableScroll(props: any) {
     tHeaderBottom = tHeader.getBoundingClientRect().bottom;
   }
   // 窗体高度-表格内容顶部的高度-表格内容底部的高度
-  // let height = document.body.clientHeight - tHeaderBottom - extraHeight
   const height = `calc(100vh - ${tHeaderBottom + extraHeight}px)`;
-  // 空数据的时候表格高度保持不变,暂无数据提示文本图片居中
-  // if (ref && ref.current) {
-  //   const placeholder = ref.current.getElementsByClassName(
-  //     'ant-table-placeholder'
-  //   )[0]
-  //   if (placeholder) {
-  //     placeholder.style.height = height
-  //     placeholder.style.display = 'flex'
-  //     placeholder.style.alignItems = 'center'
-  //     placeholder.style.justifyContent = 'center'
-  //   }
-  // }
   return height;
 }

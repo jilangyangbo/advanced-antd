@@ -1,14 +1,17 @@
 import 'react-app-polyfill/ie11';
 import * as React from 'react';
+import { useState, useRef } from 'react';
 // import * as ReactDOM from 'react-dom';
 import * as ReactDOM from 'react-dom';
 
-import { ScrollTable } from '../.';
-import { Table, Radio, Input } from 'antd';
+import { ScrollTable, DragModal } from '../.';
+import { Table, Radio, Input, Modal, Button } from 'antd';
 
 const { Group } = Radio;
 const App = () => {
   const [value, setValue] = React.useState('Table');
+  const [open, setOpen] = useState(false);
+  const modalRef = useRef(null);
   const { TextArea } = Input;
   const columns = [
     {
@@ -33,17 +36,17 @@ const App = () => {
     },
   ];
   const data = [
-    { name: 'zhangsan', age: 32, address: 'New York No. 1 Lake Park' },
-    { name: 'jack', age: 42, address: 'London No. 1 Lake Park' },
-    { name: 'tony', age: 32, address: 'Sidney No. 1 Lake Park' },
+    { name: 'ZhangSan', age: 32, address: 'New York No. 1 Lake Park' },
+    { name: 'Jack', age: 42, address: 'London No. 1 Lake Park' },
+    { name: 'Tony', age: 32, address: 'Sidney No. 1 Lake Park' },
     { name: 'Tom', age: 32, address: 'London No. 2 Lake Park' },
     { name: 'Lisi', age: 32, address: 'London No. 3 Lake Park' },
     { name: 'Lisa', age: 32, address: 'London No. 4 Lake Park' },
     { name: 'Lilei', age: 32, address: 'London No. 5 Lake Park' },
     { name: 'Lili', age: 32, address: 'London No. 6 Lake Park' },
-    { name: 'janny', age: 32, address: 'London No. 7 Lake Park' },
+    { name: 'Janny', age: 32, address: 'London No. 7 Lake Park' },
     { name: 'Brian', age: 32, address: 'London No. 8 Lake Park' },
-    { name: 'tomas', age: 32, address: 'London No. 9 Lake  Park' },
+    { name: 'Tomas', age: 32, address: 'London No. 9 Lake  Park' },
   ];
   const options = [
     { label: 'antd Table', value: 'Table' },
@@ -58,30 +61,58 @@ const App = () => {
         <div
           style={{
             display: 'flex',
-            flexDirection: 'column',
             alignItems: 'center',
-            justifyContent: 'center',
-            height: '40vh',
-            padding: '50px',
+            justifyContent: 'space-around',
+            padding: '40px',
+            height: "40vh"
           }}
         >
-          <Radio.Group
-            options={options}
-            onChange={onChange}
-            value={value}
-            optionType="button"
-            buttonStyle="solid"
-          />
-          {/* minus and plus button */}
-          <TextArea
-            rows={10}
-            style={{ width: '400px', marginTop: '50px' }}
-            value={`
-            ${
-              value == 'Table'
-                ? "import { Table } from 'antd';"
-                : "import {ScrollTable} from'advanced-antd';"
-            } 
+          <div>
+            <Button
+              type="primary"
+              onClick={() => {
+                setOpen(true);
+                console.log('modalRef.current===', modalRef.current);
+              }}
+            >
+              DragModal
+            </Button>
+            <TextArea
+              rows={13}
+              style={{ width: '400px', marginTop: '15px', display: 'block' }}
+              value={`
+             import {DragModal} from'advanced-antd'
+
+             const [open, setOpen] = useState(false)
+             <DragModal
+                title="Dragable Modal"
+                open={open}
+                onOk={() => {setOpen(false)}}
+                onCancel={() => {setOpen(false)}}
+              >
+              content
+              </DragModal>`}
+            />
+          </div>
+          <div>
+            <Radio.Group
+              options={options}
+              onChange={onChange}
+              value={value}
+              optionType="button"
+              buttonStyle="solid"
+              style={{ marginTop: '30px' }}
+            />
+            {/* minus and plus button */}
+
+            <TextArea
+              rows={10}
+              style={{ width: '400px', marginTop: '15px', display: 'block' }}
+              value={`
+            ${value == 'Table'
+                  ? "import { Table } from 'antd';"
+                  : "import {ScrollTable} from'advanced-antd';"
+                } 
 
 
               <${value}
@@ -89,7 +120,8 @@ const App = () => {
                 dataSource={data}
                 rowKey='name'
               />`}
-          />
+            />
+          </div>
         </div>
         {value === 'Table' && (
           <>
@@ -98,7 +130,7 @@ const App = () => {
               dataSource={data}
               rowKey="name"
               pagination={{ defaultPageSize: 20 }}
-              // bottomHeight={72}
+            // bottomHeight={72}
             />
           </>
         )}
@@ -112,6 +144,18 @@ const App = () => {
           />
         )}
       </div>
+      <DragModal
+        title="Dragable Modal"
+        open={open}
+        onOk={() => {
+          setOpen(false);
+        }}
+        onCancel={() => {
+          setOpen(false);
+        }}
+      >
+        content
+      </DragModal>
     </div>
   );
 };

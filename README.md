@@ -4,8 +4,13 @@
 
 ## Summary <br>
 
-ScrollTable:
+### ScrollTable:
+
 Automatically adjust the scroll-y attribute of the table based on page layout.
+
+### DragModal:
+
+The DragModal component is a secondary encapsulation based on the antd Modal component, which can achieve drag and drop pop ups.
 
 ## Example
 
@@ -19,25 +24,55 @@ npm install advanced-antd  or  pnpm install advanced-antd or yarn add advanced-a
 
 ## Usage
 
-Just need to replace the native antd Table component with ScrollTable from advanced-antd.
+### ScrollTable:
+
+The usage is similar to antd's Table
 
 ```
 import {ScrollTable} from 'advanced-antd'
 ...
 
-<ScrollTable>
-  dataSource={data}
-  scroll={{x:true}}
-  ...
-  bottomHeight={0}
-<ScrollTable/>
+  <ScrollTable>
+    dataSource={data}
+    scroll={{x:true}}
+    ...
+    bottomHeight={0}
+  <ScrollTable/>
 ```
+
+### DragModal:
+
+The usage is  similar to antd's Modal
+
+```
+import {ScrollTable} from 'advanced-antd'
+...
+const [open, setOpen] = useState(false)
+...
+
+  <DragModal
+    title="Dragable Modal"
+    open={open}
+    onCancel={()=>setOpen(false)}
+    onOk={()=>setOpen(false)}
+  >
+    content
+  </DragModal>
+  ```
 
 ## Props
 
- ScrollTable: 
+ ### ScrollTable: 
  Includes all the props of antd Table component.
- ### additional props
+ #### additional props
 | Prop  | Default  | Type | Description |
 | :------------ |:---------------:| :---------------:| :-----|
 | bottomHeight | 74 | `number` |  The distance between the table content and the bottom of the screen, such as the height of a pagenation or other component, the default value is 74 |
+
+ ### DragModal: 
+ Includes all the props of antd Modal component.
+ #### additional props
+| Prop  | Default  | Type | Description |
+| :------------ |:---------------:| :---------------:| :-----|
+| dragable | true | `boolean` |  Whether to enable drag and drop |
+| resetOnClose | false | `boolean` | Whether to reset the position of the modal when it is closed |
