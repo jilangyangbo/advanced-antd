@@ -5,6 +5,7 @@ import { Table, TableProps } from 'antd';
 interface CustomTableProps extends TableProps<any> {
   // 在此添加自定义属性或覆盖现有属性
   bottomHeight?: number;
+  minHeight?: number;
 }
 const Index: React.FC<CustomTableProps> = (props: any) => {
   const [scrollY, setScrollY] = useState<any>(0);
@@ -35,7 +36,7 @@ export default Index;
  * @param {reactRef} ref Table所在的组件的ref
  */
 function getTableScroll(props: any) {
-  let { extraHeight } = props;
+  let { extraHeight, minHeight } = props;
   const { ref } = props;
   if (typeof extraHeight == 'undefined') {
     //  默认底部分页高度
@@ -53,6 +54,7 @@ function getTableScroll(props: any) {
     tHeaderBottom = tHeader.getBoundingClientRect().bottom;
   }
   // 窗体高度-表格内容顶部的高度-表格内容底部的高度
-  const height = `calc(100vh - ${tHeaderBottom + extraHeight}px)`;
+  const height = `max(calc(100vh - ${tHeaderBottom + extraHeight}px) , ${minHeight ?? 60}px)`;
+
   return height;
 }

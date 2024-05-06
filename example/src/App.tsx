@@ -1,14 +1,11 @@
-import 'react-app-polyfill/ie11';
 import * as React from 'react';
 import { useState, useRef } from 'react';
 // import * as ReactDOM from 'react-dom';
-import * as ReactDOM from 'react-dom';
 
-import { ScrollTable, DragModal } from '../.';
-import { Table, Radio, Input, Modal, Button } from 'antd';
+import { ScrollTable, DragModal } from '../../.';
+import { Table, Radio, Input, Button, Switch, Space } from 'antd';
 
-const { Group } = Radio;
-const App = () => {
+const Index = () => {
   const [value, setValue] = React.useState('Table');
   const [open, setOpen] = useState(false);
   const [dragable, setDragable] = useState(true);
@@ -19,7 +16,7 @@ const App = () => {
     {
       title: 'No.',
       dataIndex: 'name',
-      render: (text: string, record: any, index: number) => index + 1,
+      render: (_: string, __: any, index: number) => index + 1,
     },
     {
       title: 'Name',
@@ -49,12 +46,23 @@ const App = () => {
     { name: 'Janny', age: 32, address: 'London No. 7 Lake Park' },
     { name: 'Brian', age: 32, address: 'London No. 8 Lake Park' },
     { name: 'Tomas', age: 32, address: 'London No. 9 Lake  Park' },
+    { name: 'Wangwu', age: 32, address: 'New York No. 1 Lake Park' },
+    { name: 'Jian', age: 42, address: 'London No. 1 Lake Park' },
+    { name: 'Peter', age: 32, address: 'Sidney No. 1 Lake Park' },
+    { name: 'Lee', age: 32, address: 'London No. 2 Lake Park' },
+    { name: 'Luo', age: 32, address: 'London No. 3 Lake Park' },
+    { name: 'Ling', age: 32, address: 'London No. 4 Lake Park' },
+    { name: 'Sheng', age: 32, address: 'London No. 5 Lake Park' },
+    { name: 'Shan', age: 32, address: 'London No. 6 Lake Park' },
+    { name: 'Wang', age: 32, address: 'London No. 7 Lake Park' },
+    { name: 'Zhang', age: 32, address: 'London No. 8 Lake Park' },
+    { name: 'Li', age: 32, address: 'London No. 9 Lake  Park' },
   ];
   const options = [
     { label: 'antd Table', value: 'Table' },
     { label: 'ScrollTable', value: 'ScrollTable' },
   ];
-  const onChange = e => {
+  const onChange = (e: any) => {
     setValue(e.target.value);
   };
   return (
@@ -79,8 +87,9 @@ const App = () => {
             >
               DragModal
             </Button>
-            <Button onClick={() => setDragable(!dragable)}>{dragable ? '可拖拽' : '不可拖拽'}</Button>
-
+            <Space align="center" style={{ marginLeft: 16 }}>
+              dragable: <Switch checked={dragable} onChange={setDragable} />
+            </Space>
             <TextArea
               rows={13}
               style={{ width: '400px', marginTop: '15px', display: 'block' }}
@@ -90,6 +99,7 @@ const App = () => {
              const [open, setOpen] = useState(false)
              <DragModal
                 title="Dragable Modal"
+                drageable={${dragable}}
                 open={open}
                 onOk={() => {setOpen(false)}}
                 onCancel={() => {setOpen(false)}}
@@ -165,8 +175,5 @@ const App = () => {
   );
 };
 
-const container = document.getElementById('root');
-const root = ReactDOM.createRoot(container!);
-// const root = ReactDOM.createRoot(document.getElementById('root'));
+export default Index
 
-root.render(<App />);

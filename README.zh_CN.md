@@ -62,12 +62,13 @@ const [open, setOpen] = useState(false)
 
 ## 属性
 
- ScrollTable: 
+ ### ScrollTable: 
  包含原生antd Table的所有属性以及自有属性。
- ### 自有属性
+ #### 自有属性
 | 属性名  | 默认值  | 类型 | 描述 |
 | :------------ |:---------------:| :---------------:| :-----|
 | bottomHeight | 74 | `number` |  表格距离屏幕底部的距离, 默认底部有74px高的分页组件 |
+| minHeight | 60 | `number` |  表格内容最小高度, 防止表格上方内容过多导致无法显示表格内容, 默认60px |
 
  ### DragModal: 
  包含原生antd Modal的所有属性以及自有属性。

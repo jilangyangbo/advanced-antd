@@ -68,6 +68,7 @@ const [open, setOpen] = useState(false)
 | Prop  | Default  | Type | Description |
 | :------------ |:---------------:| :---------------:| :-----|
 | bottomHeight | 74 | `number` |  The distance between the table content and the bottom of the screen, such as the height of a pagenation or other component, the default value is 74 |
+| minHeight | 60 | `number` |   The minimum height of the table content, which is used to prevent the table content from being too small, and the default value is 60 |
 
  ### DragModal: 
  Includes all the props of antd Modal component.
