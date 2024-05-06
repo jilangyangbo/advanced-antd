@@ -11,6 +11,8 @@ const { Group } = Radio;
 const App = () => {
   const [value, setValue] = React.useState('Table');
   const [open, setOpen] = useState(false);
+  const [dragable, setDragable] = useState(true);
+
   const modalRef = useRef(null);
   const { TextArea } = Input;
   const columns = [
@@ -77,6 +79,8 @@ const App = () => {
             >
               DragModal
             </Button>
+            <Button onClick={() => setDragable(!dragable)}>{dragable ? '可拖拽' : '不可拖拽'}</Button>
+
             <TextArea
               rows={13}
               style={{ width: '400px', marginTop: '15px', display: 'block' }}
@@ -146,6 +150,7 @@ const App = () => {
       </div>
       <DragModal
         title="Dragable Modal"
+        dragable={dragable}
         open={open}
         onOk={() => {
           setOpen(false);
