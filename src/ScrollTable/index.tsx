@@ -6,20 +6,30 @@ interface CustomTableProps extends TableProps<any> {
   // 在此添加自定义属性或覆盖现有属性
   bottomHeight?: number;
   minHeight?: number;
+  isFillUp?: boolean;
 }
 const Index: React.FC<CustomTableProps> = (props: any) => {
   const [scrollY, setScrollY] = useState<any>(0);
   const tableRef = useRef<any>(null);
   useEffect(() => {
-    if (tableRef.current) {
-      tableRef.current.getElementsByClassName(
-        'ant-table-body'
-      )[0].style.overflowY = 'auto';
-    }
     const sy = getTableScroll({
       ref: tableRef,
       extraHeight: props.bottomHeight,
     });
+    if (tableRef.current) {
+      tableRef.current.getElementsByClassName(
+        'ant-table-body'
+      )[0].style.overflowY = 'auto';
+      if (props.isFillUp) {
+        tableRef.current.getElementsByClassName(
+          'ant-table-body'
+        )[0].style.height = sy;
+      } else {
+        tableRef.current.getElementsByClassName(
+          'ant-table-body'
+        )[0].style.height = 'auto';
+      }
+    }
     setScrollY(sy);
   }, [props]);
   return (
@@ -54,7 +64,8 @@ function getTableScroll(props: any) {
     tHeaderBottom = tHeader.getBoundingClientRect().bottom;
   }
   // 窗体高度-表格内容顶部的高度-表格内容底部的高度
-  const height = `max(calc(100vh - ${tHeaderBottom + extraHeight}px) , ${minHeight ?? 60}px)`;
+  const height = `max(calc(100vh - ${tHeaderBottom +
+    extraHeight}px) , ${minHeight ?? 60}px)`;
 
   return height;
 }

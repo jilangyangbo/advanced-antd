@@ -9,6 +9,7 @@ const Index = () => {
   const [value, setValue] = React.useState('Table');
   const [open, setOpen] = useState(false);
   const [dragable, setDragable] = useState(true);
+  const [isFillUp, setIsFillUp] = useState(false);
 
   const modalRef = useRef(null);
   const { TextArea } = Input;
@@ -74,7 +75,7 @@ const Index = () => {
             alignItems: 'center',
             justifyContent: 'space-around',
             padding: '40px',
-            height: "40vh"
+            height: '40vh',
           }}
         >
           <div>
@@ -109,30 +110,40 @@ const Index = () => {
             />
           </div>
           <div>
-            <Radio.Group
-              options={options}
-              onChange={onChange}
-              value={value}
-              optionType="button"
-              buttonStyle="solid"
-              style={{ marginTop: '30px' }}
-            />
+            <div>
+              <Radio.Group
+                options={options}
+                onChange={onChange}
+                value={value}
+                optionType="button"
+                buttonStyle="solid"
+                style={{ marginTop: '30px' }}
+              />
+              {value == 'ScrollTable' && (
+                <Space align="center" style={{ marginLeft: 16 }}>
+                  isFillUp: <Switch checked={isFillUp} onChange={setIsFillUp} />
+                </Space>
+              )}
+            </div>
+
             {/* minus and plus button */}
 
             <TextArea
               rows={10}
               style={{ width: '400px', marginTop: '15px', display: 'block' }}
               value={`
-            ${value == 'Table'
-                  ? "import { Table } from 'antd';"
-                  : "import {ScrollTable} from'advanced-antd';"
-                } 
+            ${
+              value == 'Table'
+                ? "import { Table } from 'antd';"
+                : "import {ScrollTable} from'advanced-antd';"
+            } 
 
 
               <${value}
                 columns={columns}
                 dataSource={data}
                 rowKey='name'
+                isFillUp={${isFillUp ? 'true' : 'false'}}
               />`}
             />
           </div>
@@ -144,7 +155,7 @@ const Index = () => {
               dataSource={data}
               rowKey="name"
               pagination={{ defaultPageSize: 20 }}
-            // bottomHeight={72}
+              // bottomHeight={72}
             />
           </>
         )}
@@ -155,6 +166,7 @@ const Index = () => {
             rowKey="name"
             scroll={{ x: 1000, y: 300 }}
             pagination={{ defaultPageSize: 20 }}
+            isFillUp={isFillUp}
           />
         )}
       </div>
@@ -175,5 +187,4 @@ const Index = () => {
   );
 };
 
-export default Index
-
+export default Index;

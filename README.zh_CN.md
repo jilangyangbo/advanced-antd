@@ -69,6 +69,7 @@ const [open, setOpen] = useState(false)
 | :------------ |:---------------:| :---------------:| :-----|
 | bottomHeight | 74 | `number` |  表格距离屏幕底部的距离, 默认底部有74px高的分页组件 |
 | minHeight | 60 | `number` |  表格内容最小高度, 防止表格上方内容过多导致无法显示表格内容, 默认60px |
+| isFullUp | false | `boolean` |  表格内容是否占满视窗。设置为true的话，分页组件将固定到屏幕底部 |
 
  ### DragModal: 
  包含原生antd Modal的所有属性以及自有属性。
